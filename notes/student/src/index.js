@@ -1,28 +1,23 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 
-class MyToggleComp extends React.Component{
+//working with list
 
-    constructor(props){
-      super(props);
-      this.state = {isOn:true};
-      this.myHandler = this.myHandler.bind(this);
-    }
+function MyList(props){
+  const mylist = props.numbers;
+  const listElements = mylist.map((i) =>
+    <li key={i.toString()}>
+      {i}
+    </li>
+  );
 
-    myHandler(){
-      this.setState( state => ({
-        isOn: !state.isOn
-      }));
-      console.log("yes state is on.");
-    }
-
-    render(){
-      return(
-        <button onClick={this.myHandler}>{this.state.isOn ? 'ON' : 'OFF'}</button>
-      );
-    }
+  return(
+    <ul>{listElements}</ul>
+  );
 }
 
+const numbers  = [1,2,3,4,5];
+
 ReactDOM.render(
-  <MyToggleComp />, document.getElementById('root')
+ <MyList numbers={numbers} />, document.getElementById('root')
 );
