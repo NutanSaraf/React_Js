@@ -1,23 +1,44 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 
-//working with list
+class StudentForm extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = { isPass: true, noOfAttempts:5};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-function MyList(props){
-  const mylist = props.numbers;
-  const listElements = mylist.map((i) =>
-    <li key={i.toString()}>
-      {i}
-    </li>
-  );
+  handleChange(event){
+    //this.setState({value: event.target.value});
+    const target = event.target;
+    const value = target.name === "isPass" ? target.checked : target.value;
+    const name = target.name;
 
-  return(
-    <ul>{listElements}</ul>
-  );
+    this.setState({[name]:value});
+  }
+
+  handleSubmit(event){
+    alert('Are you sure you want to submit form?'+this.state.isPass +" "+this.state.noOfAttempts);
+    event.preventDefault();
+  }
+
+  render(){
+    return(
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Is pass:
+            <input name="isPass" type="checkbox" checked={this.state.isPass} onChange={this.handleChange} />
+          </label>
+          <label>
+            <input name="noOfAttempts" type="number" value={this.state.noOfAttempts} onChange={this.handleChange} />
+          </label>
+            <input type="submit" value="Submit" />
+        </form>
+    );
+  }
 }
 
-const numbers  = [1,2,3,4,5];
-
 ReactDOM.render(
- <MyList numbers={numbers} />, document.getElementById('root')
-);
+  <StudentForm />, document.getElementById('root')
+ );
