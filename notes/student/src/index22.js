@@ -4,10 +4,10 @@ import './index.css';
 
 //React Hook
 //Returns a stateful value, and a function to update it.
-function MyComponentWithHook(){  
+function MyComponentWithHook(){
+  //this.state =
+  //const[count,updateCount] = useState(0);
   const[count,setCount] = useState(0);
-  const[age,setAge] = useState(20);
-  const[obj,setObj] = useState({currency : 10, unit:'r'});
 
   return(
     <div>
@@ -15,17 +15,6 @@ function MyComponentWithHook(){
       <button onClick={ () => setCount(count+1)}>
           ClickMe
       </button>
-
-      <p>My age is {age}.</p>
-      <button onClick={ () => setAge(age+1)}>
-          ClickMe
-      </button>
-
-      <p>My money is {obj.currency} {obj.unit}.</p>
-      <button onClick={ () => {setObj(obj.currency)}}>
-          ClickMe
-      </button>
-
     </div>
 
   );
