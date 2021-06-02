@@ -1,32 +1,28 @@
 import React, { useState } from 'react'
 
-const AddUserForm = (props) => {
-    const intitalFormState = {id:null, name:"",username:""}
-    const[user,setUser] = useState(intitalFormState)
+const EditUserForm = (props) =>{
+    const [user,setUser] = useState(props.currentUser)
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event) =>{
         const {name,value} = event.target
         setUser({...user,[name]:value})
     }
 
-
-    return(
+    return (
         <form onSubmit={ (event) =>{
             event.preventDefault()
-            if(!user.name || !user.username)
-
-            return 
-            props.adduser(user)
-            setUser(intitalFormState)
+            props.updatedUser(user.id,user)
             }    
         }>
             <label>Name</label>
             <input type="text" name="name" value={user.name} onChange={handleInputChange}/>
             <label>User Name</label>
             <input type="text" name="username" value={user.username} onChange={handleInputChange} />
-            <button>Add new User</button>
+            <button>Updated User</button>
         </form>
-    );
+    )
+
+
 }
 
-export default AddUserForm
+export default EditUserForm
