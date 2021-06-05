@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 var student = require('./routes/student');
 var app = express();
 
+var cors = require('cors')
+app.use(cors());
+
+
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://127.0.0.1/students';
@@ -43,6 +47,9 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+app.use(cors())
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -53,5 +60,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
